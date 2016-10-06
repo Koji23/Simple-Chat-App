@@ -1,0 +1,13 @@
+// SCSS CONFIG
+@import './scss_config/normalize';
+@import './scss_config/variables';
+
+// APP STYLES
+body{
+  color: blue;
+}
+
+// COMPONENT STYLES
+@import '../conversations/conversations.scss';
+@import '../messages/messages.scss';
+@import '../profile/profile.scss';
