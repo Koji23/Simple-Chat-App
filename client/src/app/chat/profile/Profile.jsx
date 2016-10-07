@@ -5,7 +5,7 @@ const Profile = (props) => {
     <div className="profile">
       <div className="profileCard">
         <div>
-          <img height="42" width="42" src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="profile_picture"/>
+          <img height="42" width="42" src="https://s3-us-west-1.amazonaws.com/discollect/1profile" alt="profile_picture" />
         </div>
         <div></div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavBar from './navbar/NavBar.jsx';
+import Chat from './chat/Chat.jsx';
 
 const App = (props) => {
   return (
@@ -9,7 +10,7 @@ const App = (props) => {
         <NavBar />
       </div>
       <div>
-        { props.children }
+        <Chat />
       </div>
       <footer>Jordan Chong</footer>
     </div>

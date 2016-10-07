@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // Router
-import { Router, browserHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 // Redux + Middlware
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -13,19 +13,24 @@ import thunk from 'redux-thunk';
 import Routes from './routes.jsx';
 import rootReducer from './reducers.js';
 
-const logger = createLogger();
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk, promise, logger),
-);
+import App from './App.jsx';
+// const logger = createLogger();
+// const store = createStore(
+//   rootReducer,
+//   applyMiddleware(thunk),
+// );
 // const createStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore)
+//const middleware = [createLogger(), thunk, promise];
 
-// const middleware = [logger, thunk, reduxPromise];
-// const store = createStore(rootReducer, applyMiddleware(...middleware));
+//const store = createStore(rootReducer, applyMiddleware(...middleware));
+
+const createStoreWithMiddleware = applyMiddleware(thunk, promise, createLogger())(createStore);
+
+
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={Routes}/>
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
+    <App />
   </Provider>
   , document.getElementById('app'));
 

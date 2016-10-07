@@ -1,5 +1,4 @@
-window.data =
-{
+window.data = {
     "messages": [
         {
             "id": 1,

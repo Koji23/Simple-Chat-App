@@ -14,7 +14,7 @@ module.exports = {
   module: {
     loaders: [{
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query:{
         presets: ['es2015', 'react',]
       },
@@ -24,4 +24,5 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', 'jsx'],
   },
+  devtool: '#source-map',
 }
