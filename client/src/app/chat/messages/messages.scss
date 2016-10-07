@@ -2,5 +2,9 @@
   color: yellow;
   border: 1px solid #BBB;
   background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
 }
 

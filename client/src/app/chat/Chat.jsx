@@ -5,11 +5,11 @@ import Settings from './profile/Profile.jsx';
 
 const Chat = (props) => {
   return (
-    <div>
+    <main>
       <Conversations />
       <Messages />
       <Settings />
-    </div>
+    </main>
   );
 };
 

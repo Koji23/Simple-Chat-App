@@ -1,0 +1,12 @@
+main {
+  background-color: #EEE;
+  display: flex;
+  flex-direction: row;
+  height: 60em;
+  // Note: Child content should be layed out in parent component's folder and styled in its own
+}
+
+// COMPONENT STYLES
+@import './conversations/conversations';
+@import './messages/messages';
+@import './profile/profile'; 

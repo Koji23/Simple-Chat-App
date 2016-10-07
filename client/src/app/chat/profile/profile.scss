@@ -1,5 +1,9 @@
 .profile {
-  color: red;
   border-right: 1px solid #BBB;
   background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+  margin-right: 5%;
 }

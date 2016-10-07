@@ -1,0 +1,34 @@
+main {
+  background-color: #EEE;
+  display: flex;
+  flex-direction: row;
+  height: 60em; }
+
+.conversations {
+  height: 100%;
+  width: 20%;
+  margin-left: 5%;
+  display: flex;
+  color: #000;
+  border-left: 1px solid #BBB;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column; }
+
+.messages {
+  color: yellow;
+  border: 1px solid #BBB;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%; }
+
+.profile {
+  border-right: 1px solid #BBB;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+  margin-right: 5%; }

@@ -1,4 +1,4 @@
-// SCSS CONFIG
+// SCSS Globals
 @import './scss_config/normalize';
 @import './scss_config/variables';
 
@@ -8,42 +8,16 @@
   font-weight: 100;
   display: flex;
   flex-direction: column;
-  header {
-    background-color: #3b5998;
-    padding-left: 5%;
-    color: #FFF;
-  }
-  main {
-    background-color: #EEE;
-    display: flex;
-    flex-direction: row;
-    height: 60em;
-    // Note: Child content should be layed out in parent component's folder and styled in its own
-    .conversations {  
-      height: 100%;
-      width: 20%;
-      margin-left: 5%;
-      display: flex;
-    }
-    .messages {
-      display: flex;
-      height: 100%;
-      width: 50%;
-    }
-    .profile {
-      display: flex;
-      height: 100%;
-      width: 20%;
-      margin-right: 5%;
-    }
-
-  }
   footer {
     background-color: black;
+    height: 50px;
   }
 }
 
 // COMPONENT STYLES
-@import '../conversations/conversations.scss';
-@import '../messages/messages.scss';
-@import '../profile/profile.scss';
+// Note: npm 'dev-sass' script will recursively track all child sass files
+// however saving them will produce extraneous dev-only css files in the styles folder  
+// folder when saved. Run the npm 'pro-sass' script to generate a final uglified
+// stylesheet and wipe all other css files before pushing to production.
+@import './navbar/navbar';
+@import './chat/chat';
