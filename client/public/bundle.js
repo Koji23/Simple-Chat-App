@@ -87,34 +87,20 @@
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _App = __webpack_require__(272);
-	
-	var _App2 = _interopRequireDefault(_App);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// const logger = createLogger();
-	// const store = createStore(
-	//   rootReducer,
-	//   applyMiddleware(thunk),
-	// );
-	// const createStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore)
-	//const middleware = [createLogger(), thunk, promise];
-	
-	//const store = createStore(rootReducer, applyMiddleware(...middleware));
-	
-	// Redux + Middlware
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxPromise2.default, (0, _reduxLogger2.default)())(_redux.createStore);
 	// Components
 	
 	// Router
 	// React
+	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxPromise2.default, (0, _reduxLogger2.default)())(_redux.createStore);
+	// Redux + Middlware
 	
 	
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: createStoreWithMiddleware(_reducers2.default) },
-	  _react2.default.createElement(_App2.default, null)
+	  _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _routes2.default })
 	), document.getElementById('app'));
 
 /***/ },
@@ -30540,6 +30526,10 @@
 	
 	var _messages_actions = __webpack_require__(277);
 	
+	var _MessageListEntry = __webpack_require__(304);
+	
+	var _MessageListEntry2 = _interopRequireDefault(_MessageListEntry);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30563,19 +30553,17 @@
 	
 	  _createClass(Messages, [{
 	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
+	    value: function handleSubmit(e, content) {
 	      e.preventDefault();
-	      this.props.postMessage();
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps() {
-	      console.log('****');
+	      var author = 'Me';
+	      this.props.postMessage(content, author, this.props.messages.length + 1);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
+	
+	      var content = '';
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -30589,25 +30577,7 @@
 	          'ul',
 	          null,
 	          this.props.messages.map(function (msg) {
-	            return _react2.default.createElement(
-	              'li',
-	              { key: msg.id },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                msg.author
-	              ),
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                msg.timestamp
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                null,
-	                msg.content
-	              )
-	            );
+	            return _react2.default.createElement(_MessageListEntry2.default, { key: msg.id, content: msg.content, author: msg.author, timestamp: msg.timestamp });
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -30616,9 +30586,11 @@
 	          _react2.default.createElement(
 	            'form',
 	            { onSubmit: function onSubmit(e) {
-	                return _this2.handleSubmit(e);
+	                return _this2.handleSubmit(e, content);
 	              } },
-	            _react2.default.createElement('textarea', { placeholder: 'Enter Reply...' }),
+	            _react2.default.createElement('textarea', { ref: function ref(node) {
+	                content = node;
+	              }, placeholder: 'Enter Reply...' }),
 	            _react2.default.createElement('input', { type: 'submit' })
 	          )
 	        )
@@ -30676,15 +30648,15 @@
 	    payload: _fakedata2.default };
 	};
 	
-	var postMessage = exports.postMessage = function postMessage(message) {
+	var postMessage = exports.postMessage = function postMessage(message, author, id) {
 	  // const request = axios.post(URL, message);
 	  return {
 	    type: POST_MESSAGE,
 	    payload: {
-	      id: 99,
-	      timestamp: '123412412341',
-	      author: 'me',
-	      content: 'yoyoyoyoyoyo'
+	      id: id,
+	      timestamp: Date.now(),
+	      author: author,
+	      content: message
 	    }
 	  };
 	};
@@ -32195,11 +32167,6 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	// const initMessagesState = {
-	//   messages: [],
-	//   last_seen: 0,
-	// };
-	
 	exports.default = function () {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
@@ -32208,11 +32175,50 @@
 	    case _messages_actions.FETCH_MESSAGES:
 	      return action.payload.messages;
 	    case _messages_actions.POST_MESSAGE:
-	      console.log(state, action);
-	      return [action.payload].concat(_toConsumableArray(state));
+	      return [].concat(_toConsumableArray(state), [action.payload]);
 	  }
 	  return state;
 	};
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MessageListEntry = function MessageListEntry(props) {
+	  return _react2.default.createElement(
+	    "li",
+	    { className: "messageListEntry" },
+	    _react2.default.createElement(
+	      "h3",
+	      null,
+	      props.author
+	    ),
+	    _react2.default.createElement(
+	      "span",
+	      null,
+	      props.timestamp
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      null,
+	      props.content
+	    )
+	  );
+	};
+	
+	exports.default = MessageListEntry;
 
 /***/ }
 /******/ ]);

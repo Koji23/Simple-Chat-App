@@ -22,6 +22,8 @@ main {
   flex-direction: column;
   height: 100%;
   width: 50%; }
+  .messages ul {
+    overflow: scroll; }
 
 .profile {
   border-right: 1px solid #BBB;

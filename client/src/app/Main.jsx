@@ -13,24 +13,13 @@ import thunk from 'redux-thunk';
 import Routes from './routes.jsx';
 import rootReducer from './reducers.js';
 
-import App from './App.jsx';
-// const logger = createLogger();
-// const store = createStore(
-//   rootReducer,
-//   applyMiddleware(thunk),
-// );
-// const createStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore)
-//const middleware = [createLogger(), thunk, promise];
-
-//const store = createStore(rootReducer, applyMiddleware(...middleware));
-
 const createStoreWithMiddleware = applyMiddleware(thunk, promise, createLogger())(createStore);
 
 
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(rootReducer)}>
-    <App />
+    <Router history={hashHistory} routes={Routes} />
   </Provider>
   , document.getElementById('app'));
 

@@ -14,15 +14,15 @@ export const fetchMessages = () => {
   }
 };
 
-export const postMessage = (message) => {
+export const postMessage = (message, author, id) => {
   // const request = axios.post(URL, message);
   return {
     type: POST_MESSAGE,
     payload: {
-      id: 99,
-      timestamp: '123412412341',
-      author: 'me',
-      content: 'yoyoyoyoyoyo',
+      id: id,
+      timestamp: Date.now(),
+      author: author,
+      content: message,
     },
   }
 }

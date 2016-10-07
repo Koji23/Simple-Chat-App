@@ -5,3 +5,5 @@
   flex-direction: column;
   height: 100%;
   width: 50%; }
+  .messages ul {
+    overflow: scroll; }
