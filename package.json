@@ -7,11 +7,12 @@
     "test": "",
     "start": "node server/server.js",
     "dev-start": "webpack --progress --colors --watch & nodemon server/server.js",
-    "dev-sass": "node-sass -o client/public client/src/app/main.scss -w"
+    "dev-sass": "node-sass -o client/public client/src/app/main.scss -w -r"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.14.0",
     "babel": "^6.5.2",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
@@ -24,8 +25,11 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
     "redux": "^3.6.0",
+    "redux-logger": "^2.7.0",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
   }
