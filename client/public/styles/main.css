@@ -444,7 +444,6 @@ main {
   flex-direction: column; }
 
 .messages {
-  color: yellow;
   border: 1px solid #BBB;
   background-color: #FFF;
   display: flex;

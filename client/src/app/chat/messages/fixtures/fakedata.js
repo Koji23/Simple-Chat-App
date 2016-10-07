@@ -1,4 +1,4 @@
-window.data = {
+const data = {
     "messages": [
         {
             "id": 1,
@@ -90,3 +90,5 @@ window.data = {
     ],
     "last_seen": 1421953648024
 };
+
+export default data;

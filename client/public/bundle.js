@@ -83,7 +83,7 @@
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	var _reducers = __webpack_require__(301);
+	var _reducers = __webpack_require__(302);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -30424,7 +30424,7 @@
 	
 	var _Messages2 = _interopRequireDefault(_Messages);
 	
-	var _Profile = __webpack_require__(300);
+	var _Profile = __webpack_require__(301);
 	
 	var _Profile2 = _interopRequireDefault(_Profile);
 	
@@ -30540,8 +30540,6 @@
 	
 	var _messages_actions = __webpack_require__(277);
 	
-	var _messages_actions2 = _interopRequireDefault(_messages_actions);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30556,29 +30554,70 @@
 	  function Messages(props) {
 	    _classCallCheck(this, Messages);
 	
-	    return _possibleConstructorReturn(this, (Messages.__proto__ || Object.getPrototypeOf(Messages)).call(this, props));
-	    // console.log(this.props);
-	    // this.props.fetchMessages();
+	    var _this = _possibleConstructorReturn(this, (Messages.__proto__ || Object.getPrototypeOf(Messages)).call(this, props));
+	
+	    _this.props.fetchMessages();
+	    console.log(_this.props.messages);
+	    return _this;
 	  }
 	
 	  _createClass(Messages, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      this.props.postMessage();
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps() {
+	      console.log('****');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'messages' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'subHeader' },
-	          'messages'
+	          'Messages'
 	        ),
-	        _react2.default.createElement('ul', null),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.props.messages.map(function (msg) {
+	            return _react2.default.createElement(
+	              'li',
+	              { key: msg.id },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                msg.author
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                msg.timestamp
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                msg.content
+	              )
+	            );
+	          })
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'reply' },
 	          _react2.default.createElement(
 	            'form',
-	            null,
+	            { onSubmit: function onSubmit(e) {
+	                return _this2.handleSubmit(e);
+	              } },
 	            _react2.default.createElement('textarea', { placeholder: 'Enter Reply...' }),
 	            _react2.default.createElement('input', { type: 'submit' })
 	          )
@@ -30592,16 +30631,17 @@
 	
 	;
 	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  // return bindActionCreators({ fetchMessages }, dispatch);
+	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    fetchMessages: function fetchMessages() {
-	      dispatch(_messages_actions2.default.fetchMessages());
-	    }
+	    messages: state.messages
 	  };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Messages);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ fetchMessages: _messages_actions.fetchMessages, postMessage: _messages_actions.postMessage }, dispatch);
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Messages);
 
 /***/ },
 /* 277 */
@@ -30612,30 +30652,42 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.FETCH_MESSAGES = undefined;
+	exports.postMessage = exports.fetchMessages = exports.POST_MESSAGE = exports.FETCH_MESSAGES = undefined;
 	
 	var _axios = __webpack_require__(278);
 	
 	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _fakedata = __webpack_require__(300);
+	
+	var _fakedata2 = _interopRequireDefault(_fakedata);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var URL = 'localhost:3000/fixtures/fakedata.json';
 	
 	var FETCH_MESSAGES = exports.FETCH_MESSAGES = 'FETCH_MESSAGES';
+	var POST_MESSAGE = exports.POST_MESSAGE = 'POST_MESSAGE';
 	
-	var messageActions = {
-	  fetchMessages: function fetchMessages() {
-	    var request = _axios2.default.get(URL);
-	    console.log('running message actions');
-	    return {
-	      type: FETCH_MESSAGES,
-	      payload: request
-	    };
-	  }
+	var fetchMessages = exports.fetchMessages = function fetchMessages() {
+	  // const request = axios.get(URL);
+	  return {
+	    type: FETCH_MESSAGES,
+	    payload: _fakedata2.default };
 	};
 	
-	exports.default = messageActions;
+	var postMessage = exports.postMessage = function postMessage(message) {
+	  // const request = axios.post(URL, message);
+	  return {
+	    type: POST_MESSAGE,
+	    payload: {
+	      id: 99,
+	      timestamp: '123412412341',
+	      author: 'me',
+	      content: 'yoyoyoyoyoyo'
+	    }
+	  };
+	};
 
 /***/ },
 /* 278 */
@@ -31983,6 +32035,95 @@
 
 /***/ },
 /* 300 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var data = {
+	    "messages": [{
+	        "id": 1,
+	        "author": "Jane",
+	        "timestamp": 1421953410956,
+	        "content": "Hello!"
+	    }, {
+	        "id": 2,
+	        "author": "Sam",
+	        "timestamp": 1421953434028,
+	        "content": "How are you?",
+	        "last_edited": 1421953454124
+	    }, {
+	        "id": 3,
+	        "author": "Jane",
+	        "timestamp": 1421953433276,
+	        "content": "I'm in SAT!"
+	    }, {
+	        "id": 4,
+	        "author": "Jane",
+	        "timestamp": 1421953454129,
+	        "content": "Flight is delayed. :P San Antonio TSA was the friendliest I've ever encountered, though. And I have a hamburger, a beer, and decent wifi."
+	    }, {
+	        "id": 5,
+	        "author": "Sam",
+	        "timestamp": 1421953475813,
+	        "content": "Not bad."
+	    }, {
+	        "id": 6,
+	        "author": "alex",
+	        "timestamp": 1421953485810,
+	        "content": "do you still need a ride from the airport?"
+	    }, {
+	        "id": 7,
+	        "author": "Jane",
+	        "timestamp": 1421953502796,
+	        "content": "@Alex: Yeah, likely will get my bags after BART stops running. They're saying the ETA is 11:40pm now. Is that too late for you?",
+	        "last_edited": 1421953556411
+	    }, {
+	        "id": 8,
+	        "author": "Sam",
+	        "timestamp": 1421953569386,
+	        "content": "Liana says hi!"
+	    }, {
+	        "id": 9,
+	        "author": "alex",
+	        "timestamp": 1421953569386,
+	        "content": "that's fine"
+	    }, {
+	        "id": 10,
+	        "author": "Carly",
+	        "timestamp": 1421953591994,
+	        "content": "https://medium.com/the-nib/the-truth-about-the-internet-fb8864c92185 oh dear"
+	    }, {
+	        "id": 11,
+	        "author": "alex",
+	        "timestamp": 1421953601859,
+	        "content": "i'm on like aleutian time these days :P",
+	        "last_edited": "1421953605859"
+	    }, {
+	        "id": 12,
+	        "author": "Jane",
+	        "timestamp": 1421953638978,
+	        "content": "Hi Lili! How did your art show go? :D"
+	    }, {
+	        "id": 13,
+	        "author": "Carly",
+	        "timestamp": 1421953496000,
+	        "content": "Wheeeeee."
+	    }, {
+	        "id": 14,
+	        "author": "Sam",
+	        "timestamp": 1421953733618,
+	        "content": "@Carly: Pretty much."
+	    }],
+	    "last_seen": 1421953648024
+	};
+	
+	exports.default = data;
+
+/***/ },
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32017,7 +32158,7 @@
 	exports.default = Profile;
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32028,20 +32169,20 @@
 	
 	var _redux = __webpack_require__(236);
 	
-	var _messages_reducers = __webpack_require__(302);
+	var _messages_reducers = __webpack_require__(303);
 	
 	var _messages_reducers2 = _interopRequireDefault(_messages_reducers);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
-	  MessageReducer: _messages_reducers2.default
+	  messages: _messages_reducers2.default
 	});
 	
 	exports.default = rootReducer;
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32054,13 +32195,20 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
+	// const initMessagesState = {
+	//   messages: [],
+	//   last_seen: 0,
+	// };
+	
 	exports.default = function () {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 	
 	  switch (action.type) {
 	    case _messages_actions.FETCH_MESSAGES:
-	      console.log('running message reducer', action);
+	      return action.payload.messages;
+	    case _messages_actions.POST_MESSAGE:
+	      console.log(state, action);
 	      return [action.payload].concat(_toConsumableArray(state));
 	  }
 	  return state;
