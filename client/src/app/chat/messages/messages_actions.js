@@ -10,7 +10,7 @@ export const EDIT_MESSAGE = 'EDIT_MESSAGE';
 export const fetchMessages = () => {
   return {
     type: FETCH_MESSAGES,
-    payload: data,  // should be request in a real api call
+    payload: data,  
   }
 };
 
