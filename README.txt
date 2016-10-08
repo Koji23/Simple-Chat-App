@@ -35,3 +35,9 @@ Back End Spec:
     Request will come over containg only a string specifying the new username that is intended to be used.
   response:
     Also requires status code to confirm message update success or failure
+
+Browser Support:
+  Tested in:
+    1. Chrome 0.2.149
+    2. Firefox 49.0.1
+    2. Safari 10.0
