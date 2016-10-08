@@ -25,9 +25,13 @@ Back End Spec:
         Will contain a new message object meeting the same specs as above. 
       index: 
         An integer specifying the index of the message object that the new message object is intended to replace.
+  response: 
+    Also requires status code to confirm message update success or failure
 
 2.) User Controller
 
 - POST '/users'
   request:
     Request will come over containg only a string specifying the new username that is intended to be used.
+  response:
+    Also requires status code to confirm message update success or failure
