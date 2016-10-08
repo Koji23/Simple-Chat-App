@@ -8,11 +8,10 @@ class Messages extends React.Component {
   constructor(props) {
     super(props);
     this.props.fetchMessages();
-    console.log(this.props.messages);
   }
   handleSubmit (e, content) {
     e.preventDefault();
-    let author = 'Me';
+    let author = this.props.username;
     this.props.postMessage(content, author, this.props.messages.length + 1);
   }
   render () {
@@ -20,17 +19,17 @@ class Messages extends React.Component {
 
     return (
       <div className="messages">
-        <div className="subHeader">Messages</div>
+        <div className="subHeader"></div>
         <ul>
-          { this.props.messages.map(msg => {
+          { this.props.messages.map((msg, i) => {
             return (
-              <MessageListEntry key={msg.id} content={msg.content} author={msg.author} timestamp={msg.timestamp} />
+              <MessageListEntry key={msg.id} i={i} data={msg}/>
             );
           })}
         </ul>
         <div className="reply">
-          <form onSubmit={(e) => this.handleSubmit(e, content)}>
-            <textarea ref={(node) => { content = node; }} placeholder="Enter Reply..."></textarea>
+          <form onSubmit={(e) => this.handleSubmit(e, content.value)}>
+            <textarea ref={(node) => { content = node; }} placeholder="Enter Reply..."></textarea><br />
             <input type="submit" />
           </form>
         </div>
@@ -42,6 +41,7 @@ class Messages extends React.Component {
 const mapStateToProps = (state) => {
   return {
     messages: state.messages,
+    username: state.profile.username
   }
 };
 

@@ -8,5 +8,70 @@
   ul {
     overflow: scroll;
   }
+  .messageListEntry {
+    border: 1px solid #DDD;
+    padding: 1em 2.5em 1em 3em;
+    margin: 0 2em 0 1em;
+    display: flex;
+    flex-direction: row;
+    .left {
+      margin-right: 1em;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      h3 {
+        margin: 0.2em 0 0.5em 0;
+      }
+      textarea {
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        margin: 0.5em 0;
+        padding: 0.2em;
+        height: 2em
+      }
+      .actions {
+        align-self: flex-end;
+        a {
+          margin: 0 0.5em;
+        }
+      }
+    }
+  }
+
+  .reply {
+    padding: 1em 0.5em;
+    form {
+      border: 1px solid #DDD;
+      padding: 1em 0;
+      textarea {
+        width: 85%;
+        height: 6em;
+        display: block;
+        margin: 0 auto;
+        border: 2px solid #BBB;
+        padding: 0.5em;
+        font-size: 1.2em;  
+        border-radius: 10px;
+      }
+      input[type="submit"] {
+        border-radius: 10px;
+        background-color: #3b5998;
+        color: #FFF;
+        width: 15em;
+        height: 3em;
+        display: block;
+        margin: 0 auto;
+        border: none;
+      }
+      input[type="submit"]:hover {
+        background-color: #263b67;
+      }
+      input[type="submit"]:active {
+        background-color: #3b6cd2;
+      }
+    }
+  }
 }
 
