@@ -19,7 +19,8 @@ class Messages extends React.Component {
 
     return (
       <div className="messages">
-        <div className="subHeader"></div>
+        <div className="subHeader">
+        </div>
         <ul>
           { this.props.messages.map((msg, i) => {
             return (

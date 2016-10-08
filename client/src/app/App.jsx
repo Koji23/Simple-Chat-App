@@ -12,7 +12,7 @@ const App = (props) => {
       <div>
         <Chat />
       </div>
-      <footer>Jordan Chong</footer>
+      <footer><a href="bit.ly/linkedinjordan">Jordan Chong</a></footer>
     </div>
   );
 };

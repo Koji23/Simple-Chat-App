@@ -83,7 +83,7 @@
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	var _reducers = __webpack_require__(304);
+	var _reducers = __webpack_require__(312);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -30330,7 +30330,11 @@
 	    _react2.default.createElement(
 	      'footer',
 	      null,
-	      'Jordan Chong'
+	      _react2.default.createElement(
+	        'a',
+	        { href: 'bit.ly/linkedinjordan' },
+	        'Jordan Chong'
+	      )
 	    )
 	  );
 	};
@@ -30410,7 +30414,7 @@
 	
 	var _Messages2 = _interopRequireDefault(_Messages);
 	
-	var _Profile = __webpack_require__(302);
+	var _Profile = __webpack_require__(310);
 	
 	var _Profile2 = _interopRequireDefault(_Profile);
 	
@@ -30448,56 +30452,6 @@
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "conversations" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "subHeader" },
-	      _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(
-	          "a",
-	          { href: "#" },
-	          "Recent"
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(
-	          "a",
-	          { href: "#" },
-	          "Unread"
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "dropDown" },
-	        _react2.default.createElement(
-	          "button",
-	          null,
-	          "Sort"
-	        ),
-	        _react2.default.createElement(
-	          "ul",
-	          null,
-	          _react2.default.createElement(
-	            "li",
-	            null,
-	            "Time"
-	          ),
-	          _react2.default.createElement(
-	            "li",
-	            null,
-	            "Name"
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "searchBar" },
-	      _react2.default.createElement("input", { type: "text", placeholder: "search friends..." })
-	    ),
 	    _react2.default.createElement("ul", null)
 	  );
 	};
@@ -32122,7 +32076,7 @@
 	
 	var _messages_actions = __webpack_require__(277);
 	
-	var _Linkify = __webpack_require__(307);
+	var _Linkify = __webpack_require__(302);
 	
 	var _Linkify2 = _interopRequireDefault(_Linkify);
 	
@@ -32234,196 +32188,17 @@
 	  value: true
 	});
 	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(250);
-	
-	var _redux = __webpack_require__(236);
-	
-	var _profile_actions = __webpack_require__(303);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Profile = function Profile(props) {
-	  var username = '';
-	  var handleClick = function handleClick(e) {
-	    props.updateUsername(username.value);
-	  };
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'profile' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'profileCard' },
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Username: ',
-	          props.username
-	        ),
-	        _react2.default.createElement('input', { ref: function ref(node) {
-	            return username = node;
-	          }, type: 'text' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick(e) {
-	              return handleClick(e);
-	            } },
-	          'Save'
-	        )
-	      ),
-	      _react2.default.createElement('div', null)
-	    )
-	  );
-	};
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    username: state.profile.username
-	  };
-	};
-	
-	var mapDispatchToProp = function mapDispatchToProp(dispatch) {
-	  return (0, _redux.bindActionCreators)({ updateUsername: _profile_actions.updateUsername }, dispatch);
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProp)(Profile);
-
-/***/ },
-/* 303 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var UPDATE_USERNAME = exports.UPDATE_USERNAME = 'UPDATE_USERNAME';
-	
-	var updateUsername = exports.updateUsername = function updateUsername(username) {
-	  return {
-	    type: UPDATE_USERNAME,
-	    payload: username
-	  };
-	};
-
-/***/ },
-/* 304 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(236);
-	
-	var _messages_reducers = __webpack_require__(305);
-	
-	var _messages_reducers2 = _interopRequireDefault(_messages_reducers);
-	
-	var _profile_reducers = __webpack_require__(306);
-	
-	var _profile_reducers2 = _interopRequireDefault(_profile_reducers);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var rootReducer = (0, _redux.combineReducers)({
-	  messages: _messages_reducers2.default,
-	  profile: _profile_reducers2.default
-	});
-	
-	exports.default = rootReducer;
-
-/***/ },
-/* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _messages_actions = __webpack_require__(277);
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case _messages_actions.FETCH_MESSAGES:
-	      return action.payload.messages;
-	    case _messages_actions.POST_MESSAGE:
-	      return [].concat(_toConsumableArray(state), [action.payload]);
-	    case _messages_actions.EDIT_MESSAGE:
-	      var updatedMessages = state.slice(0);
-	      updatedMessages.splice(action.payload.index, 1, action.payload.newMessage);
-	      return updatedMessages;
-	  }
-	  return state;
-	};
-
-/***/ },
-/* 306 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _profile_actions = __webpack_require__(303);
-	
-	var initProfile = {
-	  username: '',
-	  imageURL: ''
-	};
-	
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initProfile;
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case _profile_actions.UPDATE_USERNAME:
-	      return Object.assign({}, state, {
-	        username: action.payload
-	      });
-	  }
-	  return state;
-	};
-
-/***/ },
-/* 307 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _linkifyIt = __webpack_require__(308);
+	var _linkifyIt = __webpack_require__(303);
 	
 	var _linkifyIt2 = _interopRequireDefault(_linkifyIt);
 	
-	var _tlds = __webpack_require__(314);
+	var _tlds = __webpack_require__(309);
 	
 	var _tlds2 = _interopRequireDefault(_tlds);
 	
@@ -32554,7 +32329,7 @@
 
 
 /***/ },
-/* 308 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32709,7 +32484,7 @@
 	function compile(self) {
 	
 	  // Load & clone RE patterns.
-	  var re = self.re = assign({}, __webpack_require__(309));
+	  var re = self.re = assign({}, __webpack_require__(304));
 	
 	  // Define dynamic patterns
 	  var tlds = self.__tlds__.slice();
@@ -33186,16 +32961,16 @@
 
 
 /***/ },
-/* 309 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	// Use direct extract instead of `regenerate` to reduse browserified size
-	var src_Any = exports.src_Any = __webpack_require__(310).source;
-	var src_Cc  = exports.src_Cc = __webpack_require__(311).source;
-	var src_Z   = exports.src_Z  = __webpack_require__(312).source;
-	var src_P   = exports.src_P  = __webpack_require__(313).source;
+	var src_Any = exports.src_Any = __webpack_require__(305).source;
+	var src_Cc  = exports.src_Cc = __webpack_require__(306).source;
+	var src_Z   = exports.src_Z  = __webpack_require__(307).source;
+	var src_P   = exports.src_P  = __webpack_require__(308).source;
 	
 	// \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
 	var src_ZPCc = exports.src_ZPCc = [ src_Z, src_P, src_Cc ].join('|');
@@ -33354,31 +33129,31 @@
 
 
 /***/ },
-/* 310 */
+/* 305 */
 /***/ function(module, exports) {
 
 	module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
 
 /***/ },
-/* 311 */
+/* 306 */
 /***/ function(module, exports) {
 
 	module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ },
-/* 312 */
+/* 307 */
 /***/ function(module, exports) {
 
 	module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 
 /***/ },
-/* 313 */
+/* 308 */
 /***/ function(module, exports) {
 
 	module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
 
 /***/ },
-/* 314 */
+/* 309 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -34885,6 +34660,185 @@
 	  "zw"
 	];
 
+
+/***/ },
+/* 310 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(250);
+	
+	var _redux = __webpack_require__(236);
+	
+	var _profile_actions = __webpack_require__(311);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Profile = function Profile(props) {
+	  var username = '';
+	  var handleClick = function handleClick(e) {
+	    props.updateUsername(username.value);
+	  };
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'profile' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'profileCard' },
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Username: ',
+	          props.username
+	        ),
+	        _react2.default.createElement('input', { ref: function ref(node) {
+	            return username = node;
+	          }, type: 'text' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick(e) {
+	              return handleClick(e);
+	            } },
+	          'Save'
+	        )
+	      ),
+	      _react2.default.createElement('div', null)
+	    )
+	  );
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    username: state.profile.username
+	  };
+	};
+	
+	var mapDispatchToProp = function mapDispatchToProp(dispatch) {
+	  return (0, _redux.bindActionCreators)({ updateUsername: _profile_actions.updateUsername }, dispatch);
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProp)(Profile);
+
+/***/ },
+/* 311 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UPDATE_USERNAME = exports.UPDATE_USERNAME = 'UPDATE_USERNAME';
+	
+	var updateUsername = exports.updateUsername = function updateUsername(username) {
+	  return {
+	    type: UPDATE_USERNAME,
+	    payload: username
+	  };
+	};
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(236);
+	
+	var _messages_reducers = __webpack_require__(313);
+	
+	var _messages_reducers2 = _interopRequireDefault(_messages_reducers);
+	
+	var _profile_reducers = __webpack_require__(314);
+	
+	var _profile_reducers2 = _interopRequireDefault(_profile_reducers);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var rootReducer = (0, _redux.combineReducers)({
+	  messages: _messages_reducers2.default,
+	  profile: _profile_reducers2.default
+	});
+	
+	exports.default = rootReducer;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _messages_actions = __webpack_require__(277);
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _messages_actions.FETCH_MESSAGES:
+	      return action.payload.messages;
+	    case _messages_actions.POST_MESSAGE:
+	      return [].concat(_toConsumableArray(state), [action.payload]);
+	    case _messages_actions.EDIT_MESSAGE:
+	      var updatedMessages = state.slice(0);
+	      updatedMessages.splice(action.payload.index, 1, action.payload.newMessage);
+	      return updatedMessages;
+	  }
+	  return state;
+	};
+
+/***/ },
+/* 314 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _profile_actions = __webpack_require__(311);
+	
+	var initProfile = {
+	  username: '',
+	  imageURL: ''
+	};
+	
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initProfile;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _profile_actions.UPDATE_USERNAME:
+	      return Object.assign({}, state, {
+	        username: action.payload
+	      });
+	  }
+	  return state;
+	};
 
 /***/ }
 /******/ ]);
