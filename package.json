@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "start": "npm run pro-sass && node server/server.js",
+    "start": "npm run pro-sass && webpack && node server/server.js",
     "dev-start": "webpack --progress --colors --watch & nodemon server/server.js",
     "dev-sass": "node-sass -o client/public/styles client/src/app/main.scss -w -r",
     "pro-sass": "node-sass --output-style compressed -o client/public/styles client/src/app/main.scss"
