@@ -1,3 +1,7 @@
+Startup Instructions:
+1.) npm install
+2.) npm start
+
 Back End Spec:
 
 1.) Messages Controller
